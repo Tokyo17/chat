@@ -1,3 +1,9 @@
+.bingkai{
+  border: 1px solid;
+  height: 300px;
+  width: 300px;
+  overflow-y: scroll;
+}
 .App {
   text-align: center;
 }
