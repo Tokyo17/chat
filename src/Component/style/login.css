@@ -1,0 +1,102 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-tap-highlight-color:transparent;
+}
+.containerLogin{
+    color: rgb(109, 109, 109);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bingkaiLogin{
+    /* border: 1px solid ; */
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    width: 600px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.bingkaiLogin .titleLogin{
+margin-bottom: 50px;
+margin-top: -50px;
+text-align: center;
+}
+.containerLogin input[type=text]{
+    /* width: 100px; */
+    border: 1px solid gray;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+    box-shadow: 0 0 0px 1000px white inset;
+}
+.containerLogin input[type=text]:focus{
+    outline: none;
+}
+
+.containerLogin input[type=password]{
+    /* width: 100px; */
+    box-shadow: 0 0 0px 1000px white inset;
+    border: 1px solid gray;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+    
+}
+.containerLogin input[type=password]:focus{
+    outline: none;
+    background-color: white !important;
+}
+
+.btnLogin{
+    /* margin-top: 10px; */
+    box-shadow: 2px 2px 5px rgba(0000, 00000, 0000, .3);
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: small;
+}
+.btnLogin:active{
+    box-shadow: 1px 1px 3px rgba(0000, 00000, 0000, .3);
+}
+
+
+
+.bubbleimg{
+    position: absolute;
+}
+.bubbleimg{
+    position: absolute;
+}
+
+.bubble1{
+    transform: translate(200px,-100px);
+    width: 150px;
+}
+
+.bubble2{
+    transform: translate(-200px,-100px);
+    width: 130px;
+}
+.bubble4{
+    transform: translate(200px,150px);
+    width: 100px;
+}
+
+.bubble7{
+    transform: translate(-200px,150px);
+    width: 150px;
+}

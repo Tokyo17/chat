@@ -1,0 +1,72 @@
+.windows{
+    display: flex;
+}
+.listKontak{
+    /* border: 1px solid;
+    width: 600px;
+    height: 100vh;
+    position: relative; */
+    width: 600px;
+    height: 100vh;
+    overflow-y: scroll;
+    position: relative;
+}
+.lastChat{
+    display: flex;
+    border: 1px solid pink;
+   padding: 10px 10px;
+}
+.chatText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+}
+.picKontak{
+    width: 50px;
+    height: 50px;
+    border: 1px solid;
+    border-radius: 50%;
+}
+.chat{
+    border: 1px solid salmon;
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+    /* position: relative; */
+}
+.headerListKontak{
+    border: 1px solid blue;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+
+
+}
+.headerListChat{
+    border: 1px solid yellowgreen;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* position: fixed; */
+
+}
+/* .chat .bubbleText:last-child {
+    border: 3px solid pink;
+} */
+
+.sendText{
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+     height: 90px;
+    border: 3px solid blue; 
+}
+.sendText input[type=text]{
+    width: 100%;
+}

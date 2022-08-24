@@ -1,0 +1,87 @@
+
+.pointer{
+    cursor: pointer;
+}
+
+.example{
+height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.header{
+    display: flex;
+}
+.oneHeader{
+    border: 2px solid pink;
+    width: 500px;
+    height: 40px;
+    display: flex;
+}
+.twoHeader{
+    border: 2px solid salmon;
+    width: 100%;
+}
+.content{
+    display: flex;
+}
+.one{
+    border: 2px solid greenyellow;
+    width: 500px;
+    overflow-y: scroll;
+    height: calc(100vh - 40px);
+
+    
+}
+.one p{
+    margin-bottom: 1500px;
+}
+
+.picKontak{
+    width: 50px;
+    height: 50px;
+    border: 1px solid;
+    border-radius: 50%;
+}
+
+.oneKontak{
+    display: flex;
+    border: 1px solid pink;
+   padding: 10px 10px;
+}
+
+.oneChat{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.two{
+    border: 2px solid red;
+    width: 100%;
+    /* overflow-y: scroll; */
+    height: calc(100vh - 40px);
+    /* position: relative; */
+}
+.twoSend{
+    height: 70px;
+    /* border: 3px solid blue; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 50px;
+    background-color: #F0F2F5;
+}
+.twoSend input{
+    border-radius: 10px;
+    /* outline: none; */
+    padding: 20px;
+    border: 1px solid;
+    width: 90%;
+    height: 40px;
+}
+.contentChat{
+    overflow-y: scroll;
+    height: calc(100vh - 113px);
+}
