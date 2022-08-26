@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import "./style/example.css"
 
+//Akun hr yg dipakek = "muhamadreza9ab@gmail.com"
+
 
 const client=new ApolloClient({
     uri:'https://optimum-corgi-31.hasura.app/v1/graphql',
