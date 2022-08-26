@@ -73,6 +73,10 @@ const client=new ApolloClient({
   
 
 const Example=(props)=>{
+
+    //======== PENDEKLARASIAN =========
+
+    const negative=useNavigate()
     var el = document.getElementById("two");
     const [to,setTo]=useState('')
     const [from,setFrom]=useState('')
@@ -88,6 +92,7 @@ const Example=(props)=>{
     //     console.log(dataz)
     //   }
     // })
+
     const [addMessage,{data:dataMessage,loading:sabar}]=useMutation(send_message,{
       onCompleted:()=>{
         
@@ -136,23 +141,16 @@ const Example=(props)=>{
       }
     })
   
-  useEffect(()=>{
-  console.log("kontakFrom : ",kontakFrom)
-  },[kontakFrom])
+
   
-  
-  
-  // console.log(dataPrivate)
-  const myRef = React.createRef();
+  //============ Handler ============
+
     function kirim(e){
 
 
         if(e.key=='Enter'){
-          if (!text||!props.username||!to){
-            // alert('kosong ito lo2')
-            // console.log(el)
-            // el.scrollTop = 50
-            el.scrollTop = el.scrollHeight;
+            if (!text||!props.username||!to){
+                alert('kosong ito lo')
           }else{
           addMessage({
             variables:{
@@ -181,14 +179,23 @@ const Example=(props)=>{
       }
     }
 
-    useEffect(()=>{
-        if(sabar){
-        el.scrollTop = el.scrollHeight}
+  
+  
+  //=========== UseEffect ===========
 
-    },[sabar])
-  
-  const negative=useNavigate()
-  
+
+//   useEffect(()=>{
+//     console.log("kontakFrom : ",kontakFrom)
+//     },[kontakFrom])
+    
+    //untuk auto scroll bottom saat mengirim pesan
+  useEffect(()=>{
+    if(sabar){
+    el.scrollTop = el.scrollHeight}
+
+},[sabar])
+
+     //untuk auto kembali ke halaman login
   useEffect(()=>{
   if(props.username.trim().length==0){
     negative("/login",{replace:true})
@@ -197,6 +204,7 @@ const Example=(props)=>{
   const logout=()=>{
     negative("/login",{replace:true})
   }
+
     return(
         <div className="example">
             <div className="header">
