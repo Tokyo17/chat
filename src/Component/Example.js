@@ -1,5 +1,5 @@
 import { ApolloClient,InMemoryCache,ApolloProvider,gql, useQuery, useSubscription, useMutation } from "@apollo/client";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef} from "react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import "./style/example.css"
@@ -78,22 +78,19 @@ const Example=(props)=>{
 
     //======== PENDEKLARASIAN =========
 
-    const negative=useNavigate()
-    var el = document.getElementById("two");
+
     const [to,setTo]=useState('')
     const [from,setFrom]=useState('')
     const [userName,setUserName]=useState('')
     const [text,setText]=useState('')
     const [show,setShow]=useState(false)
-  
-  
     const [kontakFrom,setKontakFrom]=useState([])
+    const [chatFokus,setChatFokus]=useState(true)
   
-    // const {data:dataz}=useQuery(getText,{
-    //   onCompleted:(dataz)=>{
-    //     console.log(dataz)
-    //   }
-    // })
+    const negative=useNavigate()
+    var el = document.getElementById("two");
+  
+
 
     const [addMessage,{data:dataMessage,loading:sabar}]=useMutation(send_message,{
       onCompleted:()=>{
@@ -109,8 +106,7 @@ const Example=(props)=>{
         _to2:props.username
       },
       onSubscriptionData:({subscriptionData:{data}})=>{
-        // console.log(data)
-        // console.log("v :",v)
+        setChatFokus(!chatFokus)
       }
     })
   
@@ -139,13 +135,16 @@ const Example=(props)=>{
           })         
   
           console.log(data)
+
           setKontakFrom(lastChat)
       }
     })
   
+  const inputRef = useRef()
 
   
   //============ Handler ============
+
 
     function kirim(e){
 
@@ -185,6 +184,14 @@ const Example=(props)=>{
   
   //=========== UseEffect ===========
 
+  //untuk fokus ke kolom chat saat mengeklik kontak
+  useEffect(()=>{
+    
+    if(el){
+      el.scrollTop = el?.scrollHeight
+    }
+    inputRef.current.focus()
+  },[chatFokus])
 
 //   useEffect(()=>{
 //     console.log("kontakFrom : ",kontakFrom)
@@ -193,7 +200,8 @@ const Example=(props)=>{
     //untuk auto scroll bottom saat mengirim pesan
   useEffect(()=>{
     if(sabar){
-    el.scrollTop = el.scrollHeight}
+    el.scrollTop = el.scrollHeight
+  }
 
 },[sabar])
 
@@ -224,8 +232,10 @@ const Example=(props)=>{
                 </div>
                 <div className="oneChat">
                 <h5 onClick={()=>{setShow(true)
+                        setChatFokus(!chatFokus)
                     setTo(v.from==props.username?v.to:v.from)}} style={{marginBottom:'0px',cursor:'pointer',marginTop:i==0 ? '0px' : ''}}>{v.from==props.username?v.to:v.from}</h5>
                   <p onClick={()=>{setShow(true)
+                        setChatFokus(!chatFokus)
                     setTo(v.from==props.username?v.to:v.from)}} style={{margin:'0px',cursor:'pointer'}}>{v.text.slice(0,20)}... </p>
                 </div>
 
@@ -234,8 +244,8 @@ const Example=(props)=>{
               })}
     
                 </div>
-                <div  className="two">
-                    <div id="two" className="contentChat">
+                <div   className="two">
+                    <div id="two" tabIndex="-1"  className="contentChat">
                         <p> {tunggu ? 'loading' : ''}</p>
                         
                         {/* <div class="spinner-border text-primary" role="status">
@@ -266,8 +276,8 @@ const Example=(props)=>{
                             justifyContent: 'flex-end',
                             margin:"10px 20px",
                             }}>
-                                <div class="spinner-border text-primary" role="status">
-                                    <span class="visually-hidden">Loading...</span>
+                                <div className="spinner-border text-primary" role="status">
+                                    <span className="visually-hidden">Loading...</span>
                                 </div>
 
                             </div> : ""}
@@ -275,7 +285,7 @@ const Example=(props)=>{
 
                     
                     <div className="twoSend">
-                        <input value={text} onKeyDown={kirim} onChange={e=> setText(e.target.value)} type="text"/>
+                        <input  ref={inputRef}  value={text} onKeyDown={kirim} onChange={e=> setText(e.target.value)} type="text"/>
                         <div onClick={kirim2} className="pointer">
                             Send
                         </div>

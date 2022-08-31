@@ -5,22 +5,58 @@ import bubble2 from "./assets/bubble2.png"
 import bubble4 from "./assets/bubble4.png"
 import bubble7 from "./assets/bubble7.png"
 import { useNavigate } from "react-router-dom"
+import { useLazyQuery } from "@apollo/client"
+import { ApolloClient,InMemoryCache,ApolloProvider,gql, useQuery, useSubscription, useMutation } from "@apollo/client";
+import Swal from 'sweetalert2'
+
+const check_login =gql`
+query MyQuery($_eq: String = "") {
+    kontak(where: {userName: {_eq: $_eq}}) {
+      userName
+      id
+    }
+  }  
+  `
 
 
 function Login(props) {
 
-
     const negative=useNavigate()
+
+    const [checkLogin,{data:dataLogin}]=useLazyQuery(check_login,{
+        onCompleted:(dataLogin)=>{
+            console.log(dataLogin.kontak,dataLogin.kontak.length)
+            if(dataLogin?.kontak?.length>0){
+                negative("/example",{replace:true})
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Username Not Found!',
+                })
+            }
+        }
+    })
+
+
     const home=()=>{
+
         if(props.username.trim().length!=0){
-        negative("/example",{replace:true})
+        // 
+        checkLogin({
+            variables:{
+                _eq:props.username
+            }
+          })
         }else{
             alert("masih kosong tuh")
         }
-        console.log(props.username.trim().length)
+
+        // console.log(props.username.trim().length)
     }
 
 
+    
 
  return(
      <div className="containerLogin">
